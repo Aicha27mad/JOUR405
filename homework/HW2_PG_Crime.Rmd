@@ -20,20 +20,30 @@ Then you'll load the data from the web. The URL for the data is: https://raw.git
 
 ```{r}
 pg_crime <-
-read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/pg_crime_totals_2024.csv.")  
+read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/pg_crime_totals_2024.csv")  
 ```
 ### Task 3: Describe the Data
 
 You should examine that dataframe carefully by clicking on it in the Environment tab in RStudio. Write a couple of sentences describing the categories of incidents. From a reporting standpoint, are any of the categories more important than others? Why or why not? Do any of them make the job of summarizing the data more difficult? Why or why not?
 
-ANSWER HERE: In the dataframe the "Accident" category from 2024 is the highest reported crime in the county and typically the numbers progresses monthly. Stolen automobiles listed as "Auto Stolen" is the second most attempted in the data. Both of these crimes peaked in the month of October with 569 for "Accidents" and 462 for "Auto Stolen". The 'homicide" category does reign as the more sticky crime, but because of the fortunate notable lower rates in the year, it may not be as overshadowing. The "Accident" category is difficult to summarize based on how accidents could range from various things. The "Assault" and "sex offense" categorizes could read as interchangeable as people tend to define the two as synonyms. 
+ANSWER HERE: In the dataframe the "Accident" category from 2024 is the highest reported crime in the county and typically the numbers progresses monthly. Stolen automobiles listed as "Auto Stolen" is the second most attempted in the data. Both of these crimes peaked in the month of October with 569 for "Accidents" and 462 for "Auto Stolen". The 'homicide" category does reign as the more sticky crime, but because of the fortunate notable lower rates in the year, it may not be as overshadowing. The "Accident" category is difficult to summarize based on how accidents could range from various things. The "Assault" and "sex offense" categorizes could read as interchangeable as people tend to define the two as synonyms aswell as "Auto Stolen" and "theft from auto".
 
 ### Task 4: Calculating Averages
 
 Calculate the total number of incidents per month for each category using `mutate()`, calling the new column `total_incidents`. Then calculate the average number of incidents per month for each category of crime, calling the new column `average_incidents`. Assign the result to a new dataframe called `pg_crime_averages`.
 
 ```{r}
-pg_crimes <- pg_crimes |> mutate (average_incidents = (`January, February, march, April, may, June, July, August, September, October, November, December 
+
+pg_crime_averages <- pg_crime_averages |> mutate (total_incidents = (Jan + Feb + Mar + Apr + May + Jun + Jul + Aug + Sep + Oct + Nov + Dec average_incidents = total_incidents / 12
+                                                   
+
+                                                        
+
+                                                        
+                                                        
+                                                        
+                                                        
+                                                    
 
 
 
@@ -49,7 +59,7 @@ pg_crimes <- pg_crimes |> mutate (average_incidents = (`January, February, march
 
 Examine the new dataframe, `pg_crime_averages`, by clicking on it in the Environment tab in RStudio. Write a couple of sentences describing the average number of incidents per month for each category. Which categories have the highest average number of incidents per month? Which have the lowest? What does this tell you about the pattern of crime in Prince George's County? Are there categories that you have questions about? Why or why not?
 
-ANSWER HERE
+ANSWER HERE: The catrogories that have the highest number of incidents per month are, accidents, accidents of impound, Auto stolen, theft and theft from auto.
 
 
 ### Task 6: Testing a Theory
@@ -57,20 +67,22 @@ ANSWER HERE
 One theory about crime is that it is more likely to occur in the summer months. Test this theory by creating three new columns using `mutate()` that calculate the percentage change compared to the average for each category of crime for the months of June, July, and August. Call the new columns `june_change`, `july_change`, and `august_change`. Assign the result to a new dataframe called `summer_crime_averages`.
 
 ```{r}
-call "june_change"
+
+
 ```
 
 ### Task 7: Describe the Summer Crime Averages
 
 Look at the `summer_crime_averages` dataframe by clicking on it in the Environment tab in RStudio. Write a couple of sentences describing the percentage change in the average number of incidents per month for each category of crime for the months of June, July, and August. Do you see any patterns? What does this tell you about the theory that crime is more likely to occur in the summer months?
 
-ANSWER HERE: 
+ANSWER HERE: June , July and August percentage change increases in the accidents category and is at the highest for each of the months. 
 
 ### Task 8: What's the Story?
 
 Write up a lede and nutgraf of a story focused on the crime data in Prince George's County. It could be from any of the dataframes you've created in this assignment. The lede should be a single sentence that summarizes the most important information in the data. The nutgraf should be a paragraph that provides more context and explains why the data is important.
 
 ANSWER HERE: Prince Georges County crimes increase in the winter season and accidents seem to be the 
+ANSWER HERE: Prince Georges County crimes increase in the later months of 2024 and accidents seem to be the highest reported category with a noticeable increase at the end of the year. Safety precautions needs to be pushed by the police department. 
 
 ### Task 9: Save Your Work and Put it on GitHub
 
