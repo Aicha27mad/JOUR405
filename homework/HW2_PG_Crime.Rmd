@@ -81,7 +81,6 @@ ANSWER HERE: June , July and August percentage change increases in the accidents
 
 Write up a lede and nutgraf of a story focused on the crime data in Prince George's County. It could be from any of the dataframes you've created in this assignment. The lede should be a single sentence that summarizes the most important information in the data. The nutgraf should be a paragraph that provides more context and explains why the data is important.
 
-ANSWER HERE: Prince Georges County crimes increase in the winter season and accidents seem to be the 
 ANSWER HERE: Prince Georges County crimes increase in the later months of 2024 and accidents seem to be the highest reported category with a noticeable increase at the end of the year. Safety precautions needs to be pushed by the police department. 
 
 ### Task 9: Save Your Work and Put it on GitHub
