@@ -68,3 +68,24 @@ ANSWER HERE: Maryland sees a crime rate decrease for several  cities in the year
 ### Task 9: Save Your Work and Put it on GitHub
 
 Save this notebook, then commit it to your local repository. Push the changes to your GitHub repository and submit the URL for this file in ELMS.
+
+### Task 10: 
+Using the 2020 violent crime rate, calculate the percentiles using `ntile()`. Save the results to a new dataframe called `md_cities_percentiles`. How many cities are above the 90th percentile?
+```{r}
+md_cities_percentiles <- md_cities_change |>
+  mutate(violent_rate_percentile = ntile(violent_rate_2020, 100))
+```
+Answer: Ten cities are above the 90th percentile. 
+```{r}
+ md_cities_percentiles |> 
+  summarize(iqr_violent_rate_2020 = IQR(violent_rate_2020, na.rm = TRUE))
+```
+Do the results change your best story idea from the previous assignment? Why or why not?
+Answer Here:
+The results don't change my "best story idea" from the previous assignment because Baltimore, Hyattsville, Salisbury, Ocean City and Laurel are all still in the lower levels of the violent rate percentile. The results make sense since more many of the cities rose in crime rate levels more versus the other cities and some stayed the same.
+
+
+
+```
+
+
