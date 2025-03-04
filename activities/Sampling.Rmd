@@ -37,7 +37,6 @@ sample_100 |> summarize (mean = mean(age), sd =sd(age))
 ### Task 5: Calculate the mean age and standard deviation of the population
 ```{r}
 population |> summarize (mean = mean(age), sd =sd(age))
-
 ```
 
 
