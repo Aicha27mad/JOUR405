@@ -1,0 +1,43 @@
+
+---
+Final Project
+name: "Aicha Bangoura"
+
+---
+
+# Introduction
+```{r load-data}
+read.csv("https://docs.google.com/spreadsheets/d/1SqFT_g0Rc876-QgOYZF63d5_7VLtAnXUuccude3ie7U/edit?usp=sharing.csv")
+```
+
+
+This project analyzes grade data among students taking JOUR320 with the following professors at the University of Maryland:
+```{r}
+install.packages("https://docs.google.com/spreadsheets/d/1SqFT_g0Rc876-QgOYZF63d5_7VLtAnXUuccude3ie7U/edit?usp=sharing.csv")
+```
+
+```{r load-data}
+read_csv("https://planetterp.com/professor/zremski")
+
+```
+```{r}
+read_csv("https://planetterp.com/professor/williams_clarence")
+```
+
+```{r}
+read.csv("https://planetterp.com/professor/lightman")
+```
+```{r}
+read_csv("https://planetterp.com/professor/bennett_abbie")
+```
+
+```{r}
+read_csv("https://planetterp.com/professor/abdul-alim")
+```
+
+
+
+The time period of this data is updated frequently every semester when a student posts their grades on the reviews. The grade distribution columns would be the most important thing to cover as it shows trends that may or may not be by chance. I'm working on a spreadsheet and I put that in the data, but it's missing the percentages and etc.The sample sizes are small and it could manipulate the truth a bit since some professors have less reviews and grades posted. I had setbacks loading the spreadsheet data properly onto r, but am I on the right track? Are there any other columns I should add onto the spreadsheet rather than just the grades, GPA and professors?, Should "other" in terms of grades distributed be acknowledged? Should I include zeros on the spreadsheet if there are no data for certain grades? 
+
+The source of the data is from PlanetTerp, which provides public data on courses and instructors at UMD who teach JOUR 320 among other courses.The data is accessed via the PlanetTerp API (https://planetterp.com/api/).
+
