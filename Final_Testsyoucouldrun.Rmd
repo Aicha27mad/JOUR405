@@ -1,0 +1,32 @@
+Aicha Bangoura
+
+Some data I currently obtain consist of grades and gpa among students taking JOUR320 New Writing and Reporting with the several professors that teach it.
+
+As soon as I complete my datasheet, I will run an ANOVA test for the final project. I could take on a One-way ANOVA Analysis with the data I have and compare the Grades and GPA distributed to students between professors. I could use the standard deviation formula. I could then run a post-anova Tukey test at the end to test the confidence intervals. If the p-value is higher or lower than 0.05, then my hypothesis will confirmed. 
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+library(readr)
+
+read_csv("Downloads/JOUR 320 grade data(Sheet2) - Sheet1.csv")
+```
+```{r}
+Summary(JOUR_320_grade_data_Sheet2_Sheet1)
+```
+
+# Original data
+
+I'm able to load the data from the csv Google Sheet I made and view it on Environment, but I haven't got to a place to successfully run it yet. I just need to refresh from my previous works. Please let me know if the data needs further details.
+
+```{r}
+Summary("JOUR_320_grade_data_Sheet2_Sheet1")
+```
+
+```{r}
+JOUR_320_grade_data_Sheet2_Sheet1 <- JOUR_320_grade_data_Sheet2_Sheet1 |> mutate()
+
+```
+
