@@ -128,7 +128,7 @@ ggplot(yearly_means, aes(x = year, y = mean_rate)) +
 
 For our ANOVA test, we'll compare the mean theft rates between the three time periods. First we need to create our hypotheses.
 
-**Task 4** Fill in the hypotheses (2 points)
+**Task 4** Fill in the hypotheses (2 points) 
 
 - **Null Hypothesis (H0)**: ANSWER HERE: There is no significant difference in the mean theft rates between the three time periods.
 

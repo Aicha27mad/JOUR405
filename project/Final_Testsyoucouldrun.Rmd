@@ -11,7 +11,7 @@ library(tidyverse)
 ```{r}
 library(readr)
 
-read_csv("Downloads/JOUR 320 grade data(Sheet2) - Sheet1.csv")
+grades<-read_csv("Grades.csv")
 ```
 ```{r}
 Summary(JOUR_320_grade_data_Sheet2_Sheet1)
