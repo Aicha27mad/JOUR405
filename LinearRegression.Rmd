@@ -35,7 +35,7 @@ schools |>
 ```
 Based on what you see here, what's the relationship between FARMS percentage and math test scores? Compare this scatterplot to the one you made in the class activity.
 
-ANSWER HERE: 
+ANSWER HERE: This scatter plot shows a  strong-negative relationship between FARMS and math scores. The scatter plot we were shown in class was a weak-positive relationship.
 
 
 ### Task: Linear Regression Model (7 points)
@@ -50,11 +50,11 @@ summary(model)
 
 Provide the model's output for the three statistics mentioned in the class activity.
 
-ANSWER HERE
+ANSWER HERE: The FARMS percentage is -0.595 which is the true value. The multiple R- squared is 0.676. Residual standard error is 11.04 meaning the predictions were off by about 11%. 
 
 Based on what you've learned so far, what does it tell us about the nature of the relationship between FARMS percentage and math scores? Is this model worth exploring further? Why or why not?
 
-ANSWER HERE
+ANSWER HERE: From what I've learned so far, this tells me that the relationship between FARMS percentage and math scores is negative since the slope goes down. Yes, this model is worth exploring further since there's enough evidence which links poverty and low scores. More in-depth investigation is required to confirm the correlation between the two. 
 
 ### Task: Identifying Schools with Biggest Residuals (3 points)
 
@@ -70,16 +70,17 @@ schools <- schools |>
 # Sort the data frame by the absolute value of the residuals in descending order
 schools <- schools |>
   mutate(abs_residual = abs(residual)) |>
-  arrange(desc(abs_residual))
+  arrange(desc(abs_residual)) 
 
 ```
 
 Look at the absolute values of the residuals; what are the largest differences between the predicted result and the actual math scores? Pick two schools with the largest residuals. Find the zip codes where they are located and using the CensusReporter.org website, describe the most interesting demographic data from each zip code.
 
-ANSWER HERE
+ANSWER HERE: The largest differences between the predicted results and the actual math scores are as follows: WHITEMARSH Elementary School with a predicted math score of 71.93% and an absolute score of -45.83%. The second largest difference is LOWER GWYNEDD Elementary School with a predicted math score of 63.40% and an  absolute score of -31.99%. The two schools with the largest residuals are CROOKED BILLET EL SCH with 30.18% and WOODLAND EL SCH with 25.38%.
+
 
 ## Task: Evaluate the model (5 points)
 
 Describe what conclusions you'd draw from this model's results and how it would influence a story pitch about the school board member and math scores.
 
-ANSWER HERE
+ANSWER HERE: The conclusion I could draw on are that schools were students display need is where performance in tests are low. The models suggests that while the low-income population in schools perform poorly of math scores, it doesn't show a direct relationship between Free and reduced meals for students and their scores. A story I could pitch is that the school board should implement more than free and reduced meals to everyone in the school, such as counseling for mental and emotional health and other assistance.
