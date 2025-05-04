@@ -1,0 +1,82 @@
+```{r}
+	library(readr)
+
+
+```
+
+```{r}
+grades<-read_csv("https://raw.githubusercontent.com/Aicha27mad/JOUR405/refs/heads/main/project/Grades.csv")
+```
+```{r}
+gpas <- grades |> filter(!is.na(GPA)) |> distinct() |> select(Professor, GPA).   
+
+grades_filled <- grades |>
+  fill(Professor, .direction = "down") |>   
+  select(-GPA) 
+```
+ANSWER: I inserted the wrong formula.
+
+```{r create-data}
+# set seed for reproductivity 
+set.seed(123)
+
+```
+
+```{r}
+grades_clean <- grades %>%
+  filter(!is.na(GPA), !is.na(Professor))   
+```
+
+```{r boxplot}
+
+# Create boxplot for another view
+ggplot(grades, aes(x = grades, y = GPA, fill = grades_clean)) +
+  geom_boxplot() +
+  labs(
+    title = "320 Grades",
+    x = "grades",
+    y = "Professors"
+  ) +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set1")
+```
+ANSWER: There was an error with the boxplot. I wrote in the wrong columns. 
+
+
+```{r}
+ggplot(grades_clean, aes(x = Professor, y = GPA, fill = Professor)) +
+  geom_boxplot() 
+```
+ANSWER: I see a visual display with names and labels, but there are no colors to distinguish the grades given by a particular professor inside the graph.
+
+```
+
+
+
+```
+
+
+
+
+
+
+
+```{r anova-test}
+#run one-way ANOVA 
+anova_result <- aov(gpa ~ Professors = grades)
+summary(anova_result)
+
+```
+ANSWER: R can't recognize the categories. 
+`
+   
+```
+
+
+```
+
+```{r}
+anova_result <- aov(GPA ~ Professor, data = grades_clean)
+
+```
+
