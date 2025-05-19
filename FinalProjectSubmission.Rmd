@@ -1,0 +1,196 @@
+---
+title: "JOUR320 Grade Analysis"  
+author: Aicha Bangoura
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+## Introduction
+
+In this exercise we'll explore the grades distributed between each professor who teaches Journalism 320 at Merrill College.
+
+We'll use ANOVA (Analysis of Variance) to determine whether Jerry Zremski who has the best reviews among students give the best grades.
+## Load the Data
+The first step in our analysis is to load the data. Here we read the data from a CSV file, which contains reported grades and GPA's by students from planet terp. This dataset will be used to build our model to confirm whether there are real differences in the GPA's between professors. 
+
+```{r}
+Grades<-read_csv("https://raw.githubusercontent.com/Aicha27mad/JOUR405/refs/heads/main/project/Grades.csv") 
+# Look at the first few rows
+head(Grades)
+# Get a summary of the data
+```
+
+
+
+## Task 1: Load the tidyverse and Create Sample Data
+
+```{r}
+library(tidyverse)
+```
+
+```{r create-data}
+# Set seed for reproducibility
+set.seed(123)
+
+# Create simulated GPA scores distributed between each 320 professor
+# Scale is 2.54-2.91 for GPA's
+ Zremski <- rnorm(100, mean = 2.99, sd = 0.97)
+ Lightman <- rnorm(100, mean = 2.86, sd = 0.82)
+ Williams <- rnorm(100, mean = 2.66, sd = 1.02)
+ Bennett <- rnorm(100, mean = 3.01, sd = 1.27)
+ Alim <- rnorm(100, mean = 2.91, sd = 1.37) 
+```
+
+
+```{r}
+# Combine into a single datafra
+grades <- data.frame(
+  Professor = c("Zremski", "Williams", "Lightman", "Bennett"),
+  Grade = c("A", "B", "A", "C"),
+  GPA = c(4.0, 3.0, 4.0, 2.0),
+  Percent = c(17.95, 17.95, 9.04, 4.35)
+)
+```
+
+
+
+## Task 2: Calculate Basic Statistics
+```{r}
+gpa_summary <- Grades |>
+  filter(!is.na(GPA)) |>  # Remove rows where GPA is missing
+  group_by(Grade) |> 
+  summarize(
+    mean_gpa = mean(GPA, na.rm = TRUE),
+    median_gpa = median(GPA, na.rm = TRUE),
+    sd_gpa = sd(GPA, na.rm = TRUE),
+    min_gpa = min(GPA, na.rm = TRUE),
+    max_gpa = max(GPA, na.rm = TRUE)
+  )
+# Show the result
+gpa_summary
+```
+Answer: The data shows that the mean of the GPA for an A minus is 2.68 and the standard deviation is 0.28 the minimum GPA is 2.26. The other grades are missing because of the N/A's. 
+
+## Lets create a data set for the course. 
+```{r}
+set.seed(123)
+professors <- c("Abdul-Alim", "Bennett", "Zremski", "Lightman", "Williams")
+gpas <- c(2.91, 2.90, 2.80, 2.54, 2.26)
+n <- 16  # students per professor
+
+data <- data.frame(
+  Professor = rep(professors, each = n),
+  GPA = unlist(mapply(function(mu) rnorm(n, mean = mu, sd = 0.2), gpas))
+)
+
+# Run ANOVA
+
+summary(Grades)
+```
+Answer: The column above shows the mean and medium of the GPA's in 320. The data is limited due to the N/A values. 
+
+```{r}
+# Raw data (professor, grade, GPA, percentage)
+data = 
+    "Zremski', 'A-', 3.7, 14.1,
+    'Zremski', 'A', 4.0, 17.95,
+    'Zremski', 'A+', 4.0, 2.56],
+    ['Zremski', 'B-', 2.7, 9.62],
+    ['Zremski', 'B', 3.0, 17.95],
+    ['Zremski', 'B+', 3.3, 9.62],
+    ['Zremski', 'C-', 1.7, 3.21],
+    ['Zremski', 'C', 2.0, 5.77],
+    ['Zremski', 'C+', 2.3, 3.21],
+    ['Zremski', 'D-', 0.7, 0.64],
+    ['Zremski', 'D', 1.0, 1.28],
+    ['Zremski', 'D+', 1.3, 2.56],
+    ['Zremski', 'F', 0.0, 3.21],
+    ['Lightman', 'A-', 3.7, 9.59],
+    ['Lightman', 'A', 4.0, 9.04],
+    ['Lightman', 'B-', 2.7, 10.96],
+    ['Lightman', 'B', 3.0, 25.48],
+    ['Lightman', 'B+', 3.3, 10.68],
+    ['Lightman', 'C-', 1.7, 2.74],
+    ['Lightman', 'C', 2.0, 9.04],
+    ['Lightman', 'C+', 2.3, 6.03],
+    ['Lightman', 'D-', 0.7, 0.55],
+    ['Lightman', 'D', 1.0, 1.1],
+    ['Lightman', 'D+', 1.3, 0.27],
+    ['Lightman', 'F', 0.0, 2.19],
+    ['Bennett', 'A-', 3.7, 13.04],
+    ['Bennett', 'A', 4.0, 20.29],
+    ['Bennett', 'A+', 4.0, 14.49],
+    ['Bennett', 'B-', 2.7, 8.7],
+    ['Bennett', 'B', 3.0, 10.14],
+    ['Bennett', 'C-', 1.7, 1.45],
+    ['Bennett', 'C', 2.0, 4.35],
+    ['Bennett', 'C+', 2.3, 5.8],
+    ['Bennett', 'F', 0.0, 10.14],
+    ['Williams', 'A-', 3.7, 6.47],
+    ['Williams', 'A', 4.0, 2.88],
+    ['Williams', 'B-', 2.7, 13.67],
+    ['Williams', 'B', 3.0, 20.14],
+    ['Williams', 'B+', 3.3, 12.95],
+    ['Williams', 'C-', 1.7, 2.16],
+    ['Williams', 'C', 2.0, 3.6],
+    ['Williams', 'C+', 2.3, 4.32],
+    ['Williams', 'D', 1.0, 0.72],
+    ['Williams', 'F', 0.0, 7.19],
+    ['Abdul-Alim', 'A-', 3.7, 25],
+    ['Abdul-Alim', 'A', 4.0, 31.25],
+    ['Abdul-Alim', 'B-', 2.7, 6.25],
+    ['Abdul-Alim', 'B', 3.0, 12.5],
+    ['Abdul-Alim', 'C', 2.0, 6.25],
+    ['Abdul-Alim', 'D', 1.0, 6.25],
+    ['Abdul-Alim', 'F', 0.0, 12.5]" 
+# Show the result
+
+```
+
+
+Answer: These raw values show that the most A's students received from 320 was in Professor Abdul- Alim's class. This data-set doesn't run correctly because I formatted wrong. 
+
+
+## Task 3: Visualizing the distributed grades
+
+```{r}
+library(ggplot2)
+
+ggplot(Grades, aes(x = Professor, y = GPA, colour  = Professor)) +
+  geom_boxplot() +
+  labs(title = "GPA Distribution by Professor",
+       x = "Professor",
+       y = "GPA") +
+  theme_minimal()
+```
+
+## Task 4: Evaluate the model 
+
+Answer: Right here is where we see a visual of the GPA ranges between professors who teach 320 (this time with distinguished colors). From the data it looks like Professor Jamaal Abdul-Alim ranks the top for the GPA among his students.
+
+
+## Task 5: Report the findings 
+
+Based on our analysis, we can now answer:
+
+1. Is there a significant difference in 320 grades between Professors? 
+Answer: Yes, there is a difference in 320 grades between professors. Professor's Abdul-Alim and Bennett each give the highest GPA, while Professor Williams gives the lowest. 
+
+2. How do specific professors differ from each other?
+Answer: Students of Professor Williams and Lightman tend to receive lower grades compared to those of Abdul-Alim, Bennett and Zremski.  
+
+3. How large are these differences?
+Answer: The differences are fairly large with Abdul-Alim v. Williams with a the biggest gap of 0.65. The smallest difference is Abdul-Alim v. Bennett since they both fall in the high performance range with 2.90 and 2.91. 
+Main issues: The main issues I faced were getting enough data for a significant analysis. The other obstacle was getting the ggplot to run correctly. I got a result, but I'm not sure if it's sufficient to understand the findings. 
+
+4. Was your expectation met?: No, my initial expectation of Jerry Zremski having the best grades out of all 320 professors was debunked.I realized it a while ago based on the GPA, but he tops top three.
+
+
+Story Pitch: A story I could focus this data on is how the position of faculty might influence their teaching and or allocated grades.
+
+
+Answer those questions, providing evidence for your answers, and then write a headline and a lead paragraph reporting these findings using active voice and focusing on the differences across types.
+Headline: "JOUR320 data from UMD class review website shows students performing better in classes taught by Adjunct lectures"
+Lede: Students at Merrill college taking JOUR320 have reported mixed-bags of their performance between professors with average GPAs of 2.68 and grade percentages ranging widely.
